@@ -4,11 +4,15 @@ import base64
 import json
 import os
 
-import joblib
 import yaml
 from box import ConfigBox
 from box.exceptions import BoxValueError
-from ensure import ensure_annotations
+
+try:
+    from ensure import ensure_annotations
+except ModuleNotFoundError:
+    def ensure_annotations(func):
+        return func
 
 from cnnClassifier import logger
 
@@ -53,12 +57,16 @@ def load_json(path: Path) -> ConfigBox:
 
 @ensure_annotations
 def save_bin(data: Any, path: Path):
+    import joblib
+
     joblib.dump(value=data, filename=path)
     logger.info(f"Binary file saved at: {path}")
 
 
 @ensure_annotations
 def load_bin(path: Path) -> Any:
+    import joblib
+
     data = joblib.load(path)
     logger.info(f"Binary loaded from: {path}")
     return data

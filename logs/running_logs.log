@@ -2,3 +2,43 @@
 [2026-05-03 17:20:59,573: INFO: common: YAML file: params.yaml loaded successfully]
 [2026-05-03 17:20:59,573: INFO: common: Created directory at: artifacts]
 [2026-05-03 17:20:59,573: INFO: common: Created directory at: artifacts/data_ingestion]
+[2026-05-04 18:52:37,692: INFO: main: >>>>>> stage Data Ingestion stage started <<<<<<]
+[2026-05-04 18:52:37,692: INFO: common: YAML file: src\cnnClassifier\config\config.yaml loaded successfully]
+[2026-05-04 18:52:37,692: INFO: common: YAML file: params.yaml loaded successfully]
+[2026-05-04 18:52:37,694: INFO: common: Created directory at: artifacts]
+[2026-05-04 18:52:37,696: INFO: common: Created directory at: artifacts/data_ingestion]
+[2026-05-04 18:52:39,805: ERROR: main: HTTP Error 404: Not Found]
+Traceback (most recent call last):
+  File "C:\Users\aabhi\Desktop\kidney_disease\Kidney-Disease-Classification\main.py", line 15, in <module>
+    data_ingestion.main()
+  File "C:\Users\aabhi\Desktop\kidney_disease\Kidney-Disease-Classification\src\cnnClassifier\pipeline\stage_01_data_ingestion.py", line 14, in main
+    data_ingestion.download_file()
+  File "C:\Users\aabhi\Desktop\kidney_disease\Kidney-Disease-Classification\src\cnnClassifier\components\data_ingestion.py", line 16, in download_file
+    filename, headers = request.urlretrieve(
+  File "C:\Users\aabhi\AppData\Local\Programs\Python\Python310\lib\urllib\request.py", line 241, in urlretrieve
+    with contextlib.closing(urlopen(url, data)) as fp:
+  File "C:\Users\aabhi\AppData\Local\Programs\Python\Python310\lib\urllib\request.py", line 216, in urlopen
+    return opener.open(url, data, timeout)
+  File "C:\Users\aabhi\AppData\Local\Programs\Python\Python310\lib\urllib\request.py", line 525, in open
+    response = meth(req, response)
+  File "C:\Users\aabhi\AppData\Local\Programs\Python\Python310\lib\urllib\request.py", line 634, in http_response
+    response = self.parent.error(
+  File "C:\Users\aabhi\AppData\Local\Programs\Python\Python310\lib\urllib\request.py", line 563, in error
+    return self._call_chain(*args)
+  File "C:\Users\aabhi\AppData\Local\Programs\Python\Python310\lib\urllib\request.py", line 496, in _call_chain
+    result = func(*args)
+  File "C:\Users\aabhi\AppData\Local\Programs\Python\Python310\lib\urllib\request.py", line 643, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 404: Not Found
+[2026-05-04 18:54:53,441: INFO: main: >>>>>> stage Data Ingestion stage started <<<<<<]
+[2026-05-04 18:54:53,441: INFO: common: YAML file: src\cnnClassifier\config\config.yaml loaded successfully]
+[2026-05-04 18:54:53,441: INFO: common: YAML file: params.yaml loaded successfully]
+[2026-05-04 18:54:53,441: INFO: common: Created directory at: artifacts]
+[2026-05-04 18:54:53,441: INFO: common: Created directory at: artifacts/data_ingestion]
+[2026-05-04 18:54:54,947: INFO: data_ingestion: artifacts/data_ingestion/data.zip downloaded with headers: Server: nginx/1.29.8
+Date: Mon, 04 May 2026 13:24:54 GMT
+Transfer-Encoding: chunked
+Connection: close
+
+]
+[2026-05-04 18:54:54,949: INFO: main: >>>>>> stage Data Ingestion stage completed <<<<<<]
