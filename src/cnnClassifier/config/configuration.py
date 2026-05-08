@@ -1,5 +1,10 @@
 from cnnClassifier.constants import CONFIG_FILE_PATH, PARAMS_FILE_PATH
-from cnnClassifier.entity.config_entity import DataIngestionConfig
+from cnnClassifier.entity.config_entity import (
+    DataIngestionConfig,
+    EvaluationConfig,
+    PrepareBaseModelConfig,
+    TrainingConfig,
+)
 from cnnClassifier.utils.common import create_directories, read_yaml
 
 
@@ -24,4 +29,48 @@ class ConfigurationManager:
             source_URL=config.source_URL,
             local_data_file=config.local_data_file,
             unzip_dir=config.unzip_dir,
+        )
+
+    def get_prepare_base_model_config(self) -> PrepareBaseModelConfig:
+        config = self.config.prepare_base_model
+
+        create_directories([config.root_dir])
+
+        return PrepareBaseModelConfig(
+            root_dir=config.root_dir,
+            base_model_path=config.base_model_path,
+            updated_base_model_path=config.updated_base_model_path,
+            params_image_size=self.params.IMAGE_SIZE,
+            params_learning_rate=self.params.LEARNING_RATE,
+            params_include_top=self.params.INCLUDE_TOP,
+            params_weights=self.params.WEIGHTS,
+            params_classes=self.params.CLASSES,
+        )
+
+    def get_training_config(self) -> TrainingConfig:
+        training = self.config.training
+        prepare_base_model = self.config.prepare_base_model
+        training_data = self.config.data_ingestion.unzip_dir
+
+        create_directories([training.root_dir])
+
+        return TrainingConfig(
+            root_dir=training.root_dir,
+            trained_model_path=training.trained_model_path,
+            updated_base_model_path=prepare_base_model.updated_base_model_path,
+            training_data=training_data,
+            params_epochs=self.params.EPOCHS,
+            params_batch_size=self.params.BATCH_SIZE,
+            params_is_augmentation=self.params.AUGMENTATION,
+            params_image_size=self.params.IMAGE_SIZE,
+        )
+
+    def get_evaluation_config(self) -> EvaluationConfig:
+        return EvaluationConfig(
+            path_of_model=self.config.training.trained_model_path,
+            training_data=self.config.data_ingestion.unzip_dir,
+            mlflow_uri="https://dagshub.com/entbappy/Kidney-Disease-Classification-MLflow-DVC.mlflow",
+            all_params=self.params,
+            params_image_size=self.params.IMAGE_SIZE,
+            params_batch_size=self.params.BATCH_SIZE,
         )
