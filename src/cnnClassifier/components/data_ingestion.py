@@ -3,6 +3,8 @@ import zipfile
 import gdown
 from cnnClassifier import logger
 from cnnClassifier.utils.common import get_size
+import urllib.request as request
+from zipfile import ZipFile
 from cnnClassifier.entity.config_entity import (DataIngestionConfig)
 
 
@@ -12,25 +14,16 @@ class DataIngestion:
         self.config = config
 
     
-    def download_file(self)-> str:
-        '''
-        Fetch data from the url
-        '''
-
-        try: 
-            dataset_url = self.config.source_URL
-            zip_download_dir = self.config.local_data_file
-            os.makedirs("artifacts/data_ingestion", exist_ok=True)
-            logger.info(f"Downloading data from {dataset_url} into file {zip_download_dir}")
-
-            file_id = dataset_url.split("/")[-2]
-            prefix = 'https://drive.google.com/uc?/export=download&id='
-            gdown.download(prefix+file_id,zip_download_dir)
-
-            logger.info(f"Downloaded data from {dataset_url} into file {zip_download_dir}")
-
-        except Exception as e:
-            raise e
+    def download_file(self):
+        if not os.path.exists(self.config.local_data_file):
+            filename, headers = request.urlretrieve(
+                url=self.config.source_URL,
+                filename=self.config.local_data_file
+            )
+            logger.info(f"{filename} download! with following info: \n{headers}")
+        else:
+            logger.info(f"File already exists of size: {os.path.getsize(self.config.local_data_file)}")
+        
         
     
 

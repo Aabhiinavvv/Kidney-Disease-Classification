@@ -86,3 +86,63 @@ Connection: close
 [2026-05-08 22:40:37,208: INFO: 4269190096: Downloaded data from https://archive.ics.uci.edu/static/public/336/chronic+kidney+disease.zip into file artifacts/data_ingestion/data.zip]
 [2026-05-08 22:40:37,208: INFO: 4269190096: Extracting zip file into artifacts/data_ingestion]
 [2026-05-08 22:40:37,208: INFO: 4269190096: Zip file extracted successfully]
+[2026-05-08 23:24:45,111: INFO: common: yaml file: src\cnnClassifier\config\config.yaml loaded successfully]
+[2026-05-08 23:24:45,114: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-05-08 23:24:45,116: INFO: common: created directory at: artifacts]
+[2026-05-08 23:24:45,117: INFO: common: created directory at: artifacts/prepare_base_model]
+[2026-05-08 23:25:13,308: WARNING: saving_utils: Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.]
+[2026-05-13 15:41:03,895: INFO: main: >>>>>> stage Data Ingestion stage started <<<<<<]
+[2026-05-13 15:41:03,897: INFO: common: yaml file: src\cnnClassifier\config\config.yaml loaded successfully]
+[2026-05-13 15:41:03,902: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-05-13 15:41:03,904: INFO: common: created directory at: artifacts]
+[2026-05-13 15:41:03,907: INFO: common: created directory at: artifacts/data_ingestion]
+[2026-05-13 15:41:03,907: INFO: data_ingestion: Downloading data from https://archive.ics.uci.edu/static/public/336/chronic+kidney+disease.zip into file artifacts/data_ingestion/data.zip]
+[2026-05-13 15:41:04,907: ERROR: main: Failed to retrieve file url:
+
+	Cannot retrieve the public link of the file. You may need to change
+	the permission to 'Anyone with the link', or have had many accesses.
+	Check FAQ in https://github.com/wkentaro/gdown?tab=readme-ov-file#faq.
+
+You may still be able to access the file from the browser:
+
+	https://drive.google.com/uc?id=336
+
+but Gdown can't. Please check connections and permissions.]
+Traceback (most recent call last):
+  File "C:\Users\aabhi\Desktop\kidney_disease\Kidney-Disease-Classification\.venv\lib\site-packages\gdown\download.py", line 301, in download
+    url = get_url_from_gdrive_confirmation(res.text)
+  File "C:\Users\aabhi\Desktop\kidney_disease\Kidney-Disease-Classification\.venv\lib\site-packages\gdown\download.py", line 65, in get_url_from_gdrive_confirmation
+    raise FileURLRetrievalError(
+gdown.exceptions.FileURLRetrievalError: Cannot retrieve the public link of the file. You may need to change the permission to 'Anyone with the link', or have had many accesses. Check FAQ in https://github.com/wkentaro/gdown?tab=readme-ov-file#faq.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\aabhi\Desktop\kidney_disease\Kidney-Disease-Classification\main.py", line 16, in <module>
+    data_ingestion.main()
+  File "C:\Users\aabhi\Desktop\kidney_disease\Kidney-Disease-Classification\src\cnnClassifier\pipeline\stage_01_data_ingestion.py", line 16, in main
+    data_ingestion.download_file()
+  File "C:\Users\aabhi\Desktop\kidney_disease\Kidney-Disease-Classification\src\cnnClassifier\components\data_ingestion.py", line 33, in download_file
+    raise e
+  File "C:\Users\aabhi\Desktop\kidney_disease\Kidney-Disease-Classification\src\cnnClassifier\components\data_ingestion.py", line 28, in download_file
+    gdown.download(prefix+file_id,zip_download_dir)
+  File "C:\Users\aabhi\Desktop\kidney_disease\Kidney-Disease-Classification\.venv\lib\site-packages\gdown\download.py", line 312, in download
+    raise FileURLRetrievalError(message)
+gdown.exceptions.FileURLRetrievalError: Failed to retrieve file url:
+
+	Cannot retrieve the public link of the file. You may need to change
+	the permission to 'Anyone with the link', or have had many accesses.
+	Check FAQ in https://github.com/wkentaro/gdown?tab=readme-ov-file#faq.
+
+You may still be able to access the file from the browser:
+
+	https://drive.google.com/uc?id=336
+
+but Gdown can't. Please check connections and permissions.
+[2026-05-13 15:47:28,355: INFO: main: >>>>>> stage Data Ingestion stage started <<<<<<]
+[2026-05-13 15:47:28,358: INFO: common: yaml file: src\cnnClassifier\config\config.yaml loaded successfully]
+[2026-05-13 15:47:28,363: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-05-13 15:47:28,366: INFO: common: created directory at: artifacts]
+[2026-05-13 15:47:28,370: INFO: common: created directory at: artifacts/data_ingestion]
+[2026-05-13 15:47:28,370: INFO: data_ingestion: File already exists of size: 19410]
+[2026-05-13 15:47:28,374: INFO: main: >>>>>> stage Data Ingestion stage completed <<<<<<]
