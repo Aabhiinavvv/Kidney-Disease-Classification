@@ -178,3 +178,7 @@ but Gdown can't. Please check connections and permissions.
 [2026-05-13 17:45:18,950: INFO: common: yaml file: params.yaml loaded successfully]
 [2026-05-13 17:45:18,951: INFO: common: created directory at: artifacts]
 [2026-05-13 17:45:18,953: INFO: common: created directory at: artifacts\training]
+[2026-05-13 17:50:55,361: INFO: common: yaml file: src\cnnClassifier\config\config.yaml loaded successfully]
+[2026-05-13 17:50:55,368: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-05-13 17:50:55,368: INFO: common: created directory at: artifacts]
+[2026-05-13 17:50:55,371: INFO: common: created directory at: artifacts\training]
